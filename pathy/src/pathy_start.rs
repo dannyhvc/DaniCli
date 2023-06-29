@@ -1,14 +1,14 @@
 use crate::helpers;
 use clap::Parser;
 
-#[derive(Parser, Debug, Clone)]
-pub enum Pathy {
-    #[clap[subcommand]]
-    Pathy(PathyCommands),
-}
+// #[derive(Parser, Debug, Clone)]
+// pub enum Pathy {
+//     #[clap[subcommand]]
+//     Pathy(Pathy),
+// }
 
 #[derive(Parser, Debug, Clone)]
-pub enum PathyCommands {
+pub enum PathyArgs {
     Unix {
         #[clap(index = 1)]
         name: String,
@@ -23,7 +23,7 @@ pub enum PathyCommands {
     },
 }
 
-impl PathyCommands {
+impl PathyArgs {
     pub(crate) fn handle_to_unix(path: String) -> String {
         helpers::windows_to_unix_path(path.as_str())
     }

@@ -1,5 +1,5 @@
 use clap::Parser;
-use pathy::pathy_start::Pathy;
+use pathy::pathy_start::PathyArgs;
 
 /// Simple program to greet a person
 #[derive(Parser, Debug, Clone)]
@@ -8,5 +8,6 @@ use pathy::pathy_start::Pathy;
     about = "A bunch of simplified blazing fast cli tools"
 )]
 pub enum DaniCliArgs {
-    Path(Pathy)
+    #[clap(subcommand)]
+    Pathy(PathyArgs),
 }
