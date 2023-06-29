@@ -1,0 +1,14 @@
+[package]
+name = "dani_cli"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+cargo = { version = "0.71.0", features = ["pretty_env_logger"] }
+clap = { version = "4.3.4", features = ["derive"] }
+
+to_seperate_zips = { path = "../to_seperate_zips" }
+pathy = { path = "../pathy" }
+dani_cli_metadata = { path = "../dani_cli_metadata" }
