@@ -1,7 +1,7 @@
 pub(crate) mod helpers;
-pub mod pathy_start;
+pub mod blueprint;
 
-use pathy_start::PathyArgs;
+use blueprint::PathyArgs;
 
 pub fn handle(args: PathyArgs) -> Result<(), String> {
     match args {

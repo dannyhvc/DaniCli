@@ -9,6 +9,6 @@ edition = "2021"
 cargo = { version = "0.70.1", features = ["pretty_env_logger"] }
 clap = { version = "4.2.7", features = ["derive"] }
 
-dani_cli_metadata = { path = "../dani_cli_metadata" }
+prelude = { path = "../prelude" }
 pathy = { path = "../pathy" }
 zipper ={ path = "../zipper"}

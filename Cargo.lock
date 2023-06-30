@@ -450,17 +450,8 @@ version = "0.1.0"
 dependencies = [
  "cargo",
  "clap",
- "dani_cli_metadata",
  "pathy",
- "zipper",
-]
-
-[[package]]
-name = "dani_cli_metadata"
-version = "0.1.0"
-dependencies = [
- "clap",
- "pathy",
+ "prelude",
  "zipper",
 ]
 
@@ -1192,6 +1183,15 @@ name = "pkg-config"
 version = "0.3.27"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "26072860ba924cbfa98ea39c8c19b4dd6a4a25423dbdf219c1eca91aa0cf6964"
+
+[[package]]
+name = "prelude"
+version = "0.1.0"
+dependencies = [
+ "clap",
+ "pathy",
+ "zipper",
+]
 
 [[package]]
 name = "pretty_env_logger"
