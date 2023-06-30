@@ -3,8 +3,8 @@ pub mod pathy_start;
 
 use pathy_start::PathyArgs;
 
-pub fn handle(pathy_cmds: PathyArgs) -> Result<(), String> {
-    match pathy_cmds {
+pub fn handle(args: PathyArgs) -> Result<(), String> {
+    match args {
         PathyArgs::Unix { name } => {
             //TODO: make it copy to clipboard
             println!(

@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 clap = { version = "4.3.4", features = ["derive"] }
 pathy = { path = "../pathy" }
+zipper = {path = "../zipper"}

@@ -1,3 +1,3 @@
 
 [workspace]
-members = ["./dani_cli", "./dani_cli_metadata", "./to_seperate_zips", "./pathy"]
+members = ["./dani_cli", "./dani_cli_metadata","./zipper", "./pathy"]
