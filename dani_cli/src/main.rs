@@ -1,5 +1,5 @@
 use clap::Parser;
-use dani_cli_metadata::DaniCliArgs;
+use prelude::DaniCliArgs;
 
 fn main() {
     let args = DaniCliArgs::parse();
