@@ -19,7 +19,7 @@ pub enum ZipperArgs {
         #[clap(default_value = ".")]
         wd: String,
         /// files to add
-        #[arg(short = 'i', default_value=None)]
-        items: Option<Vec<String>>,
+        #[arg(short = 'l', default_value=None)]
+        list: Option<Vec<String>>,
     },
 }

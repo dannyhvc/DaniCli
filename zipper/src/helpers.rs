@@ -100,7 +100,9 @@ pub(crate) fn _zip_all_joined(wd: String, name: Option<String>) -> io::Result<()
 }
 
 pub(crate) fn _zip_selected_files(wd: String, selection: Option<Vec<String>>) -> io::Result<()> {
-    Ok(())
+    // TODO: zip each selected file seperately but don't touch any other file in the directory that
+    // is not listed.
+    todo!();
 }
 
 fn __get_files(path: &Path, files: &mut Vec<PathBuf>) {
