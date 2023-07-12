@@ -99,20 +99,46 @@ pub(crate) fn _zip_all_joined(wd: String, name: Option<String>) -> io::Result<()
     Ok(())
 }
 
-pub(crate) fn _zip_selected_files(wd: String, selection: Option<Vec<String>>) -> io::Result<()> {
-    // TODO: zip each selected file seperately but don't touch any other file in the directory that
-    // is not listed.
-    todo!();
+pub(crate) fn _zip_selected_files(wd: String, list: Option<Vec<String>>) -> io::Result<()> {
+    let path: &Path = Path::new(&wd);
+    let files: Vec<PathBuf> = match list {
+        Some(l) => l.into_iter().map(|s| path.join(s)).collect(),
+        None => {
+            let mut files: Vec<PathBuf> = Vec::new();
+            __get_files(&path, &mut files);
+            files
+        }
+    };
+
+    let file: File = fs::File::create(path.join("archive.zip"))?;
+    let mut zip: ZipWriter<File> = zip::ZipWriter::new(file);
+    let options: FileOptions = FileOptions::default()
+        .compression_method(zip::CompressionMethod::Deflated)
+        .unix_permissions(0o755);
+
+    for file in files {
+        if file.is_file() {
+            let name = file.strip_prefix(path).unwrap().to_str().unwrap();
+            zip.start_file(name, options)?;
+            let mut f = fs::File::open(file)?;
+            io::copy(&mut f, &mut zip)?;
+        }
+    }
+
+    zip.finish()?;
+    Ok(())
 }
 
 fn __get_files(path: &Path, files: &mut Vec<PathBuf>) {
     if path.is_dir() {
         files.push(path.to_path_buf());
-        fs::read_dir(path).unwrap().for_each(|entry| {
-            let entry: fs::DirEntry = entry.unwrap();
-            let path: PathBuf = entry.path();
-            __get_files(&path, files);
-        });
+        fs::read_dir(path)
+            .unwrap()
+            .for_each(|entry: Result<fs::DirEntry, io::Error>| {
+                let entry: fs::DirEntry = entry.unwrap();
+                let path: PathBuf = entry.path();
+                __get_files(&path, files);
+            });
     } else {
         files.push(path.to_path_buf());
     }
