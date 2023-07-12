@@ -1,23 +1,25 @@
+pub mod blueprint;
 pub(crate) mod helpers;
-pub mod pathy_start;
 
-use pathy_start::PathyArgs;
+use blueprint::PathyArgs;
 
-pub fn handle(pathy_cmds: PathyArgs) -> Result<(), String> {
-    match pathy_cmds {
+pub fn handle(args: PathyArgs) -> Result<(), String> {
+    use clipboard::{ClipboardContext, ClipboardProvider};
+
+    let mut ctx: ClipboardContext = ClipboardProvider::new().unwrap();
+    let transformed_path: String;
+    match args {
         PathyArgs::Unix { name } => {
-            //TODO: make it copy to clipboard
-            println!(
-                "path in unix format:\n {}\n",
-                PathyArgs::handle_to_unix(name)
-            );
+            // converts  windows format path to unix format path
+            transformed_path = PathyArgs::handle_to_unix(name);
+            println!("path in unix format:\n {transformed_path}\n",);
+            ctx.set_contents(transformed_path).unwrap();
         }
         PathyArgs::Win { name } => {
-            //TODO: make it copy to clipboard
-            _ = println!(
-                "path in windows format:\n {}\n",
-                PathyArgs::handle_to_win(name)
-            );
+            // converts unix format path to windows format path
+            transformed_path = PathyArgs::handle_to_win(name);
+            println!("path in windows format:\n {transformed_path}\n",);
+            ctx.set_contents(transformed_path).unwrap();
         }
         PathyArgs::Open { name } => {
             let mut attempt: Result<(), String> = Err("no init".into());

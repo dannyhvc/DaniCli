@@ -1,5 +1,6 @@
 use clap::Parser;
-use pathy::pathy_start::PathyArgs;
+use pathy::blueprint::PathyArgs;
+use zipper::blueprint::ZipperArgs;
 
 /// Simple program to greet a person
 #[derive(Parser, Debug, Clone)]
@@ -10,4 +11,7 @@ use pathy::pathy_start::PathyArgs;
 pub enum DaniCliArgs {
     #[clap(subcommand)]
     Pathy(PathyArgs),
+
+    #[clap(subcommand)]
+    Zipper(ZipperArgs),
 }
